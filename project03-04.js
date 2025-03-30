@@ -21,3 +21,40 @@ let reviews = [
 ];
 let reviewTitles = ["My Favorite Workout Game", "Poor Choreography", "Buggy with Poor Tech Support", "Nice Improvement"];
 
+// Function to generate star images based on rating
+function starImages(rating) {
+      let imageText = "";
+      for (let i = 1; i <= rating; i++) {
+          imageText += "<img src='star.png' alt='star'>"; // Appends star image for each rating point
+      }
+      return imageText;
+  }
+  
+  // Reference the article element where reviews will be inserted
+  let articleElement = document.getElementsByTagName("article")[0];
+  
+  // Loop through each review and generate corresponding HTML
+  for (let i = 0; i < reviewers.length; i++) {
+      let reviewCode = "";
+      
+      // Assign table class based on review type
+      if (reviewType[i] === "P") {
+          reviewCode += "<table class='prime'>"; // Positive review
+      } else if (reviewType[i] === "N") {
+          reviewCode += "<table class='new'>"; // Negative review
+      } else {
+          reviewCode += "<table>"; // Neutral review
+      }
+      
+      // Construct review table
+      reviewCode += `
+          <caption>${reviewTitles[i]}</caption>
+          <tr><th>By</th><td>${reviewers[i]}</td></tr>
+          <tr><th>Review Date</th><td>${reviewDates[i]}</td></tr>
+          <tr><td colspan='2'>${reviews[i]}</td></tr>
+          <tr><th>Rating</th><td>${starImages(stars[i])}</td></tr>
+      </table>`;
+      
+      // Insert the review table into the article element
+      articleElement.insertAdjacentHTML("beforeend", reviewCode);
+  }

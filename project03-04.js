@@ -30,7 +30,7 @@ function starImages(rating) {
       return imageText;
   }
   
-  // Reference the article element where reviews will be inserted
+  // Calls the article element where reviews will be inserted
   let articleElement = document.getElementsByTagName("article")[0];
   
   // Loop through each review and generate corresponding HTML
